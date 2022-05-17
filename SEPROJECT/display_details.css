@@ -1,0 +1,263 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  background-image: url('bgb.jpg');
+  background-size: 1600px 900px;
+  color: #000000;
+  font-family: 'Lato';
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  text-align: center;
+  overflow-x: hidden;
+}
+.card {
+  float: left;
+  position: relative;
+  width: 376.674px;
+  height: 340px;
+  margin: 5px 10px 5px 400px;
+  border-radius:30px;
+  background-image: url('bgb_header.jpg');
+  box-shadow: 0px 0px 5px 5px black;
+}
+.card1 {
+  float: left;
+  position: relative;
+  width: 376.674px;
+  height: 500px;
+  margin: 0 30px 30px 0;
+  border-radius:30px;
+  background-image: url('bgb_header.jpg');
+  box-shadow: 5px 5px black;
+}
+.card__name {
+  font-size: 25px;
+  line-height: 0.9;
+  font-weight: 800;
+  float: left;
+}
+
+
+main {
+  text-align: center;
+}
+main h1, main p {
+  margin: 0 0 12px 0;
+}
+main h1 {
+  margin-top: 12px;
+  font-weight: 800;
+  color: #000000;
+  font-size:50px;
+}
+.bar {
+  height: 5px;
+  width: 100%;
+  background: #000000;
+}
+.fab {
+  color: #000000;
+  font-size: 14px;
+}
+.skill{
+  padding: 0px 20px 0px 20px;
+}
+.skill h4{
+    font-weight: 400;
+    font-size: 8px;
+    letter-spacing: 0.05em;
+    margin: 4px 0;
+    color: white;
+  }
+.skill  p {
+    color: white;
+    font-size: 8px;
+    padding-top: 20px;
+  }
+  .Selected{
+    color:rgb(87, 230, 79);
+    font-size: 20px;
+  line-height: 0.9;
+  font-weight: 600;
+  float: right;
+  margin-right:30px;
+  }
+  .Rejected{
+    color:rgb(249, 121, 121);
+    font-size: 20px;
+  line-height: 0.9;
+  font-weight: 600;
+  float: right;
+  margin-right:30px;
+  }
+  .WaitingList{
+    color:rgb(254, 254, 44);
+    font-size: 20px;
+  line-height: 0.9;
+  font-weight: 600;
+  float: right;
+  margin-right:30px;
+
+  }
+  .top{
+   padding-bottom:40px;
+    
+    margin-top:20px;
+    margin-left:30px;
+    
+  }
+  .SelectedDot {
+    height: 10px;
+    width: 10px;
+    background-color: rgb(87, 230, 79);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .WaitingListDot {
+    height: 10px;
+    width: 10px;
+    background-color: rgb(254, 254, 44);
+    border-radius: 50%;
+    display: inline-block;
+    
+  }
+  .RejectedDot {
+    height: 10px;
+    width: 10px;
+    background-color: rgb(249, 121, 121);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .details{
+    margin-top:20px;
+    margin-left:30px;
+    text-align: left;
+  }
+  .label{
+    color:#000000;
+    font-size:20px;
+    font-weight:800;
+  }
+  .value{
+    color:#160c0c;
+    font-size:20px;
+    font-weight:300;
+  }
+  
+.inputBox{
+  width: 90%;
+  margin: 10px 10px 0px 37px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.inputBox label{
+  font-size: 20px;
+  padding-bottom: 10px;
+  color: #444;
+  padding-top: 10px;
+}
+
+.inputBox textarea{
+  width: 90%;
+  height: 100px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 10px 10px;
+  font-size: 16px;
+  color: #444;
+}
+
+.inputBox button{
+  width: 30%;    
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  background: rgb(0, 119, 255);
+  color: #FFF;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  
+}
+
+.inputBox button:hover{
+  background: rgb(0, 17, 255);
+  transition: all 0.3s ease;
+}
+
+::placeholder{
+  font-size: 16px;
+}
+
+.alert{
+  width: 100%;
+  background: rgb(0, 61, 26);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 900;
+  display: none;
+}
+.inputBox input[type="tel"]{
+  width: 65%;
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 0px 10px;
+  font-size: 16px;
+  color: #444;
+}
+
+.inputBox input[type="text"], .inputBox input[type="email"]{
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 0px 10px;
+  font-size: 16px;
+  color: #444;
+}
+.t1{
+  font-size: 30px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+.b1{
+  width: 30%;    
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  background: rgb(0, 119, 255);
+  color: #FFF;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  
+}

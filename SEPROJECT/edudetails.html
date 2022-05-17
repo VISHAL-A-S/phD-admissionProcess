@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Messages | Firebase</title>
+    <link rel="stylesheet" href="./stylepersonal.css">
+
+    
+</head>
+<body>
+    <div id="formEdu"></div>
+    <div class="container">
+        <h2>Educational Details</h2>
+        <form >
+            <div class="alert">Your Educational details are saved</div>
+            <div class="inputBox">
+                <label>Enrollment ID <span style="color: red;">*</span></label><input type="text" id="enroll" placeholder="Your Enrollment ID" required />
+             </div>
+
+            <div class="inputBox">
+               <label>10th Mark(in %) <span style="color: red;">*</span></label><input type="text" id="tenmark" placeholder="Your 10th Mark" required />
+            </div>
+
+            <div class="inputBox">
+                <label>10th Board <span style="color: red;">*</span></label>
+                <select type="text" id="tenboard" placeholder="Your 10th Board" required >
+                    <option value="cbse">CBSE</option>
+                    <option value="isce">ISCE</option>
+                    <option value="sb">SB</option>
+                    <option value="nios">NIOS</option>
+                    <option value="cisce">CISCE</option>
+                </select>
+             </div>
+             <div class="inputBox">
+                <label>10th Certificate GDrive Link <span style="color: red;">*</span></label><input type="text" id="tenlink" placeholder="10th Certificate GDrive Link" required />
+             </div>
+             <div class="inputBox">
+                <label>12th Mark(in %) <span style="color: red;">*</span></label><input type="text" id="twelvemark" placeholder="Your 12th Mark" required />
+             </div>
+ 
+             <div class="inputBox">
+                 <label>12th Board <span style="color: red;">*</span></label>
+                 <select type="text" id="twelveboard" placeholder="Your 12th Board" required >
+                     <option value="cbse">CBSE</option>
+                     <option value="isce">ISCE</option>
+                     <option value="sb">SB</option>
+                     <option value="nios">NIOS</option>
+                     <option value="cisce">CISCE</option>
+                 </select>
+              </div>
+              <div class="inputBox">
+                 <label>12th Certificate GDrive Link <span style="color: red;">*</span></label><input type="text" id="twelvelink" placeholder="12th Certificate GDrive Link" required />
+              </div>
+              <div class="inputBox">
+                <label>UG percentage <span style="color: red;">*</span></label><input type="text" id="ugmark" placeholder="Your UG percentage" required />
+             </div>
+             <div class="inputBox">
+                <label>Author ID <span style="color: red;">*</span></label><input type="text" id="autid" placeholder="Paper Published link or Author ID" required />
+             </div>
+             <div class="inputBox">
+                <label>Course to Opt <span style="color: red;">*</span></label>
+                <select type="text" id="course" placeholder="Course to opt" required >
+                    <option value="iot">IOT</option>
+                    <option value="deeplearning">Deep Learning</option>
+                    <option value="machinelearning">Machine Learning</option>
+                    <option value="cloudcomputing">Cloud Computing</option>
+                </select>
+             </div>
+            <div class="inputBox">
+                <button type="button" id="submitedu">Submit</button>
+                <button type="button" style="margin-left:12em" onclick="location.href='applicant.html'">Back</button>
+            </div>
+            <div class="inputBox">
+                <a href="payment_f.html"><button type="button" id="pay">PAY</button></div></a>
+            <div>
+        </form>
+    </div>
+
+   
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script type="text/javascript" src="sindex.js"></script>
+
+<script type="module">
+    
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-analytics.js";
+    import {getDatabase, ref, set,get, child,update,remove} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+    import {getAuth } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
+    document.getElementById("submitedu").onclick = function(){
+    
+        console.log("hi")
+    const firebaseConfig = {
+      apiKey: "AIzaSyC1ySZHrpOTbAQfbF7VNBcUrvcf1-VXYgM",
+      authDomain: "phd-app-58d1d.firebaseapp.com",
+      databaseURL: "https://phd-app-58d1d-default-rtdb.firebaseio.com",
+      projectId: "phd-app-58d1d",
+      storageBucket: "phd-app-58d1d.appspot.com",
+      messagingSenderId: "661825239440",
+      appId: "1:661825239440:web:ad8f20e315b10b741cdb15",
+      measurementId: "G-EJL0RX69L8"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    
+    const db=getDatabase();
+    const dbref=ref(db);
+    var dict={};
+    var key=document.getElementById('enroll').value;
+   
+    get(child(dbref,"Applicant/")).then((snapshot)=>{
+            
+            if(snapshot.exists()){
+                
+                var snapshot1=snapshot.val()
+            
+                var tenmark= document.getElementById('tenmark').value;
+      var tenboard= document.getElementById('tenboard').value;
+      var tenlink= document.getElementById('tenlink').value;
+      var twelvemark= document.getElementById('twelvemark').value;
+      var twelveboard= document.getElementById('twelveboard').value;
+      var twelvelink= document.getElementById('twelvelink').value;
+      var ugmark= document.getElementById('ugmark').value;
+      var autid= document.getElementById('autid').value;
+      var course= document.getElementById('course').value;
+      var autid=document.getElementById('autid').value;
+      console.log(snapshot1) 
+      var keys=Object.keys(snapshot1)
+                for(var i=0;i<Object.values(snapshot1).length;i++){
+                    if(Object.values(snapshot1)[i]["courseopted"]=="" && Object.values(snapshot1)[i]["ApplicantID"]==key){
+                    dict[Object.values(snapshot1)[i]["ApplicantID"]]={"ApplicationID": Object.values(snapshot1)[i]["ApplicantID"],"Name": Object.values(snapshot1)[i]["Name"],"courseopted":course,
+                    "tenthboard":tenboard,
+                    "tenthcertificate":tenlink,
+                    "tenthpercentage":tenmark,
+                    "twelfthboard":twelveboard,
+                    "twelfthcertificate":twelvelink,
+                    "twelfthpercentage":twelvemark,
+                    "ugpercentage":ugmark,
+                    "authorid":autid,
+                    "keyuq":Object.keys(snapshot1)[i]
+                }}
+                }
+                
+                
+            update(ref(db,"Applicant/"+dict[key]["keyuq"]+"/"),{
+                "courseopted":dict[key]["courseopted"],
+                "tenthboard":dict[key]["tenthboard"],
+                    "tenthcertificate":dict[key]["tenthcertificate"],
+                    "tenthpercentage":dict[key]["tenthpercentage"],
+                    "twelfthboard":dict[key]["twelfthboard"],
+                    "twelfthcertificate":dict[key]["twelfthcertificate"],
+                    "twelfthpercentage":dict[key]["twelfthpercentage"],
+                    "ugpercentage":dict[key]["ugpercentage"],
+                    "authorid":dict[key]["authorid"],
+        })
+        .then(()=>{
+            console.log("updated!")
+            alert('Submitted!')
+        })
+        .catch((error)=>{
+            alert("Unsuccessful, "+error);
+        });
+            }
+        })
+            
+            .catch((error)=>{
+                alert("Unsuccessful, error "+error);
+            });
+        
+            
+    }    
+    
+    
+</script>
+</html>

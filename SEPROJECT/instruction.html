@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		body{
+			font-family: sans-serif;
+			margin: 0px 0px;
+		}
+		#mainbox{
+			font-size: 24px;
+			cursor: pointer;
+			transition: all .6s;
+			padding: 15px;
+			z-index: 100;
+			background-color: #250448;
+			color: aliceblue;
+			border: 5px;
+			border-radius: 10px;
+		}
+		.sidemenu{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			height: 100%;
+			width: 0px;
+			background-color: rgb(34, 34, 34);
+			z-index: 1;
+			padding-top: 100px;
+			overflow-x: hidden;
+			transition: all .5s;
+		}
+		.sidemenu a{
+			padding: 8px 8px 8px 64px;
+			text-decoration: none;
+			font-size: 20px;
+			color: #999;
+			display: block;
+		}
+		.sidemenu a:hover{
+			color: white;
+		}
+		.sidemenu .closebtn{
+			position: absolute;
+			top: 0px;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 32px;
+		}
+		.instructions{
+            /* margin-top: 1%; */
+			/* margin-left: 100px; */
+            font-size: 20px;
+            padding: 3%;
+            margin: 30px 100px;
+            background-color: rgb(166, 180, 180);
+		}
+        .cont-button{
+            align-items: center;
+            margin-left: 45%;
+            background-color: rgb(134, 146, 147);
+            border: 0 solid #e2e8f0;
+            border-radius: 1.5rem;
+            box-sizing: border-box;
+            color: #0d172a;
+            cursor: pointer;
+            display: inline-block;
+            font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1;
+            padding: 1rem 1.6rem;
+            text-align: center;
+            text-decoration: none #0d172a solid;
+            text-decoration-thickness: auto;
+            transition: all .1s cubic-bezier(.4, 0, .2, 1);
+            box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            /* margin-left: 20px; */
+            
+        }
+        .cont-button:hover{
+            background-color: #ebe058;
+            color: #fff;
+        }
+	</style>
+</head>
+
+<body>
+	<!-- <div id="mainbox" onclick="openFunction()">&#9776; </div>
+	<div id="menu" class="sidemenu">
+		<a href="#">Home</a>
+		<a href="#">About</a>
+		<a href="#">Contact</a>
+		<a href="#">Login</a>
+		<a href="#" class="closebtn" onclick="closeFunction()">&times;</a>
+	</div>
+	<script type="text/javascript">
+		function openFunction(){
+			document.getElementById("menu").style.width="300px";
+			document.getElementById("mainbox").style.marginLeft="300px";
+			document.getElementById("instructions").style.marginLeft="300px";
+		}
+		function closeFunction(){
+			document.getElementById("menu").style.width="0px";
+			document.getElementById("mainbox").style.marginLeft="0px";
+			document.getElementById("instructions").style.marginLeft="0px";
+		}
+	</script> -->
+	<div class="instructions">
+		<ul >
+		  <h1>Instructions</h1>
+		  <li>Applications for admission to a Ph.D. program at Anonymity University are accepted twice a year, for January and July sessions.</li>
+		  <li>Candidates seeking admission to the Ph.D. program, whether full time or part time, shall have to possess requisite percentage of marks / grade point average / subjects/ specializations in qualifying examination as indicated under each Ph.D. program:</li>
+		  <li>Candidate who apply for Ph.D part time , will have to submit their employment verification details at the time of form filling and NOC as per format, at the time of joining after their selection to the program</li>
+		  <li>The admission Form is to be filled and submitted ONLINE ONLY along with required documents uploaded in the given format and an online payment of Rs 1100/- made via a Credit / Debit card. No hard copies will be accepted.</li>
+		  <li>Candidates will be communicated about requirements related to their application form, date, time and venue of selection process (written test and / or Interview) ONLY ON THE ADMISSION MICRO SITE at www.anonymity.edu or in the Anonymity Mobile App available at www.anonymity.edu/app. In certain cases, options of dates will be available giving greater flexibility. It is the responsibility of the candidate to periodically check the admission microsite for updates and to select a date for PET. No separate communication will be sent in this regard.</li>
+		  <li>Eligible candidates will be required to appear in the Selection Process consisting of PET (Ph.D. Entrance Test) /and an Interview round as per UGC’s PhD Guidelines. PET Exempted candidates, exempted as per criteria given in section ’eligibility criteria’ will appear for Interview only</li>
+		  <li>Selected candidates will be intimated about their selection on the Admission Microsite.</li>
+		  <li>A printable online admission letter will be uploaded on the admission microsite within the two days of candidate selection. This will carry details regarding payment of fees at the time of admission, date, time and venue for commencement of the academic session etc.</li>
+		</ul>
+       <a href = "applicant.html"><button class="cont-button" >Continue</button>
+	   </a> </div>
+</body>
+</html>

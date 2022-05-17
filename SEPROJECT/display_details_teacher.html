@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="display_details.css"/>
+        
+    </head>
+    <body>
+        <main>
+            <h1>Student Details</h1>
+          </main>
+          <ul>
+            <div id="details"></div>
+                </div>
+              </li>
+          </ul>
+    </body>
+    <script type="module" >
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC1ySZHrpOTbAQfbF7VNBcUrvcf1-VXYgM",
+          authDomain: "phd-app-58d1d.firebaseapp.com",
+          databaseURL: "https://phd-app-58d1d-default-rtdb.firebaseio.com",
+          projectId: "phd-app-58d1d",
+          storageBucket: "phd-app-58d1d.appspot.com",
+          messagingSenderId: "661825239440",
+          appId: "1:661825239440:web:ad8f20e315b10b741cdb15",
+          measurementId: "G-EJL0RX69L8"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import {getDatabase, ref, set,get, child,update,remove}
+        from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+        const db=getDatabase();
+
+
+        // function InsertData(){
+        //     set(ref(db,"Applicant/"+applicantID.value),{
+        //         ApplicantID: applicantID.value
+        //     })
+        //     .then(()=>{
+        //         alert("Data Stored Successfully")
+        //     })
+        //     .catch((error)=>{
+        //         alert("Unsuccessful, "+error);
+        //     });
+        // }
+        // function SelectData(){
+        //     const dbref=ref(db);
+        //     get(child(dbref,"Applicant/0OY20x8l3xST1wm4Y6GuBGFtWlo2/")).then((snapshot)=>{
+        //         if(snapshot.exist()){
+        //             name=snapshot.val().NameOfStd;
+        //         }
+        //     })
+        //     .catch((error)=>{
+        //         alert("Unsuccessful, error "+error);
+        //     });
+        // }
+        var x="";
+        const dbref=ref(db);
+        var dict={}
+            
+            document.querySelectorAll('input[type=number]')
+  .forEach(e => e.oninput = () => {
+    // Always 2 digits
+    if (e.value.length >= 2) e.value = e.value.slice(0, 2);
+    // 0 on the left (doesn't work on FF)
+    if (e.value.length === 1) e.value = '0' + e.value;
+    // Avoiding letters on FF
+    if (!e.value) e.value = '00';
+  });
+            
+            var loop1=1;
+            get(child(dbref,"Applicant/")).then((snapshot)=>{
+            
+                if(snapshot.exists()){
+                    
+                    var snapshot1=snapshot.val()
+                    
+                    for(var i=0;i<Object.values(snapshot1).length;i++){ 
+                        dict[Object.values(snapshot1)[i]["ApplicantID"]]={"ApplicationID": Object.values(snapshot1)[i]["ApplicantID"],"Name": Object.values(snapshot1)[i]["Name"],"courseopted":Object.values(snapshot1)[i]["courseopted"],
+                        "tenthpercent":Object.values(snapshot1)[i]["tenthpercentage"],
+                        "twelfthpercent":Object.values(snapshot1)[i]["twelfthpercentage"],
+                        "ugpercent":Object.values(snapshot1)[i]["ugpercentage"],
+                    }
+                    }
+                    for(var i=0;i<Object.keys(dict).length;i++){
+                        dict[Object.values(snapshot1)[i]["ApplicantID"]] =Object.assign({},dict[Object.values(snapshot1)[i]["ApplicantID"]],{
+                    "Status":"",
+                    "Date":"",
+                    "Time":""
+                });
+                    }
+                    var keysApplicant=Object.keys(dict);
+                   var keysTimetable=[];
+                   var snapkeys={};
+                        get(child(dbref,"timetable/")).then((snapshot)=>{
+                            var snapshot2=snapshot.val();
+                            
+                            for(var j=0;j<Object.keys(snapshot2).length;j++){
+                                snapkeys[snapshot2[Object.keys(snapshot2)[j]]['appid']]=Object.keys(snapshot2)[j];
+                            }
+                            console.log(snapkeys);
+                            if(snapshot.exists()){
+                                for(var i=0;i<Object.keys(snapshot2).length;i++){ 
+                            keysTimetable.push(Object.values(snapshot2)[i]['appid']);
+                                }
+
+                                for(var i=0;i<Object.keys(dict).length;i++){ 
+                        
+                        if(!(keysTimetable.includes(dict[keysApplicant[i]]['ApplicationID']))){
+                        set(ref(db,"timetable/"+dict[keysApplicant[i]]["ApplicationID"]),{
+                appid: dict[keysApplicant[i]]["ApplicationID"],
+                date: dict[keysApplicant[i]]["Date"],
+                name: dict[keysApplicant[i]]["Name"],
+                status: dict[keysApplicant[i]]["Status"],
+                time: dict[keysApplicant[i]]["Time"],
+                
+            })
+            .then(()=>{
+                keysTimetable.push(dict[keysApplicant[i]]["KeysTimetable"]),
+                console.log("inserted!")
+            })
+            .catch((error)=>{
+                alert("Unsuccessful, "+error);
+            });
+        }
+                    }
+
+
+                            }   
+                else{
+                    alert("Data is Not present")
+                }})
+            .catch((error)=>{
+                alert("Unsuccessful, error "+error);
+            });
+                    
+                    
+                    
+        //     function InsertData(){
+        //     set(ref(db,"timetable/"+applicantID.value),{
+        //         ApplicantID: applicantID.value
+        //     })
+        //     .then(()=>{
+        //         alert("Data Stored Successfully")
+        //     })
+        //     .catch((error)=>{
+        //         alert("Unsuccessful, "+error);
+        //     });
+        // }
+                    for(var i=0;i<Object.keys(dict).length;i++){   
+                           
+                    x = x + `
+            <li class="card1">
+            <div class="card__flipper">
+                   <div class="card__front">
+                     <div class="top">
+                        <span class="card__name">${Object.keys(dict)[i]}</span>
+                        <span class=""><select id=${"status"+Object.keys(dict)[i] }>
+                            <option value="Selected">Selected</option>
+                            <option value="Waiting List">Waiting List</option>
+                            <option value="Rejected">Rejected</option>
+                        </select></span> 
+                    </div> 
+                    <div class="details">
+                        <span class="label">Name: </span><span class="value">${dict[Object.keys(dict)[i]]['Name']}</span><br/><br/>
+                        <span class="label" >Course Opted: </span><span class="value">${dict[Object.keys(dict)[i]]['courseopted']}</span><br/><br/>
+                        <span class="label">Tenth Percentage: </span><span class="value">${dict[Object.keys(dict)[i]]['tenthpercent']}</span><br/><br/>
+                        <span class="label">Twelfth Percentage: </span><span class="value">${dict[Object.keys(dict)[i]]['twelfthpercent']}</span><br/><br/>
+                        <span class="label">UG Percentage: </span><span class="value">${dict[Object.keys(dict)[i]]['ugpercent']}</span><br/><br/>
+                        <span class="label">Interview Allocation: </span><br/><br/>
+                        <span class="value" ><span class="label">Date: </span><input type="date" id=${"date"+Object.keys(dict)[i] } value=${dict[Object.keys(dict)[i]]['Date']}></input></span><br/><br/>
+                        <span class="value" ><span class="label">Time: </span><input type="number" min="0" max="23" placeholder="00" id=${"hour"+Object.keys(dict)[i] }>:
+                        <input type="number" min="0" max="59" placeholder="00" id=${"minute"+Object.keys(dict)[i] }></input></span><br/><br/>
+                        <button id=${"button"+Object.keys(dict)[i] }>Update</button>  
+                        <span id=${"updatesuccess"+Object.keys(dict)[i]} style="color:#000000"></span>
+                        
+                    </div>
+                </div>
+                </li>
+            `
+            //create id for all values
+            document.getElementById("details").innerHTML = x;           
+            }
+            console.log(dict);
+            var buttons = document.querySelectorAll('button')
+            for (var i = 0; i < buttons.length; i++){
+                
+                
+                document.getElementById(buttons[i].id).onclick = function(data){
+                  
+                    var key=data.srcElement.id.slice(6);
+                    
+                dict[key]['Date']=document.getElementById("date"+key).value;
+                dict[key]['Time']=(document.getElementById("hour"+key).value=="" && document.getElementById("minute"+key).value=="")?"":document.getElementById("hour"+key).value+':'+document.getElementById("minute"+key).value;
+                dict[key]['Status']=document.getElementById("status"+key).value;
+                document.getElementById("updatesuccess"+key).innerHTML = "Updated!"; 
+                console.log(dict[key])
+                update(ref(db,"timetable/"+snapkeys[key]+"/"),{
+                date: dict[key]["Date"],
+                status: dict[key]["Status"],
+                time: dict[key]["Time"],
+            })
+            .then(()=>{
+                console.log("updated!s")
+            })
+            .catch((error)=>{
+                alert("Unsuccessful, "+error);
+            });
+                };
+            }
+                }
+                else{
+                    alert("Data is Not present")
+                }})
+            .catch((error)=>{
+                alert("Unsuccessful, error "+error);
+            });
+            
+            
+      </script>
+</html>
